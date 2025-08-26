@@ -3,3 +3,6 @@ pandas
 seaborn
 matplotlib
 requests
+streamlit
+beautifulsoup4
+ipykernel

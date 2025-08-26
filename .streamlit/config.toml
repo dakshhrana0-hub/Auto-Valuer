@@ -1,0 +1,6 @@
+[theme]
+primaryColor="#9B30FF"         # Purple (Dark Orchid)
+backgroundColor="#000000"      # Black
+secondaryBackgroundColor="#1A1A1A"  # Dark Grey/Black
+textColor="#FFFFFF"            # White text
+font="sans serif"
