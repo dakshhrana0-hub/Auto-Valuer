@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-
+import urllib
 # ------------------------------
 # App Config
 # ------------------------------
@@ -18,33 +18,24 @@ st.markdown(
     <style>
         /* Overall background */
         .stApp {
-            background-color: #000000; /* Black */
-            color: #FFFFFF; /* White text */
-        }
-
-        /* Hero Image */
-        .hero-image {
-            width: 100%;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0px 6px 18px rgba(0,0,0,0.5);
+            background-color: #000000;
+            color: #E8E8E8; /* Slightly brighter grey */
         }
 
         /* Hero Title Div */
         .title-container {
-            background: linear-gradient(90deg, #6a0dad, #000000); /* Purple → Black */
-            padding: 35px;
+            background: linear-gradient(90deg, #444444, #000000); /* Brighter grey → Black */
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0px 6px 18px rgba(0,0,0,0.5);
+            box-shadow: 0px 6px 18px rgba(255,255,255,0.1); /* Soft white glow */
             margin-bottom: 20px;
         }
 
         /* Title Text */
         .title-container h1 {
             font-size: 64px;
-            font-weight: 900;
-            background: linear-gradient(to right, #9b59b6, #ffffff);
+            font-weight: 700;
+            background: linear-gradient(to right, #F0F0F0, #FFFFFF); /* Soft white → Pure white */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
@@ -52,14 +43,14 @@ st.markdown(
 
         /* Subtitle */
         .title-container h3 {
-            color: #dcdcdc;
+            color: #C8C8C8;
             font-weight: 500;
-            margin-top: 12px;
+            margin-top: 5px;
         }
 
         /* Subheaders */
         h2, h3 {
-            color: #BA55D3 !important;
+            color: #F0F0F0 !important; /* Brighter grey */
             font-weight: 700;
         }
 
@@ -68,27 +59,28 @@ st.markdown(
             background-color: #1A1A1A;
             padding: 15px;
             border-radius: 12px;
-            border: 1px solid #9B30FF;
+            border: 1px solid #AAAAAA; /* Light grey border */
+            box-shadow: 0px 0px 6px rgba(255,255,255,0.05); /* Soft white shadow */
         }
 
         /* Buttons */
         .stButton button {
-            background-color: #9B30FF;
-            color: white;
+            background-color: #CCCCCC;
+            color: #000000;
             border-radius: 8px;
             border: none;
             font-weight: 600;
             padding: 6px 18px;
         }
         .stButton button:hover {
-            background-color: #BA55D3;
-            color: black;
+            background-color: #FFFFFF;
+            color: #000000;
         }
 
         /* Expander (FAQ) */
         .streamlit-expanderHeader {
-            background-color: #9B30FF !important;
-            color: white !important;
+            background-color: #CCCCCC !important;
+            color: #000000 !important;
             font-weight: 600 !important;
             border-radius: 6px;
         }
@@ -98,7 +90,7 @@ st.markdown(
             background-color: #1A1A1A;
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid #9B30FF;
+            border: 1px solid #AAAAAA;
         }
         .contact-form label {
             font-weight: 600;
@@ -110,13 +102,13 @@ st.markdown(
             margin-top: 5px;
             margin-bottom: 15px;
             border-radius: 8px;
-            border: 1px solid #BA55D3;
+            border: 1px solid #CCCCCC;
             background-color: #2A2A2A;
-            color: white;
+            color: #F0F0F0;
         }
         .contact-form button {
-            background-color: #9B30FF;
-            color: white;
+            background-color: #CCCCCC;
+            color: #000000;
             border-radius: 8px;
             padding: 10px 20px;
             font-weight: 600;
@@ -124,22 +116,22 @@ st.markdown(
             cursor: pointer;
         }
         .contact-form button:hover {
-            background-color: #BA55D3;
-            color: black;
+            background-color: #FFFFFF;
+            color: #000000;
         }
 
         /* Footer */
         .footer {
             background-color: #1A1A1A;
-            color: #BA55D3;
+            color: #CCCCCC;
             text-align: center;
             padding: 15px;
-            border-top: 1px solid #9B30FF;
+            border-top: 1px solid #AAAAAA;
             margin-top: 50px;
             font-size: 14px;
         }
         .footer a {
-            color: #BA55D3;
+            color: #FFFFFF;
             text-decoration: none;
         }
         .footer a:hover {
@@ -149,7 +141,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 # ------------------------------
 # Hero Title Section with DIV
 # ------------------------------
@@ -166,12 +157,7 @@ st.markdown(
 # ------------------------------
 # Hero Image Section (Below Title)
 # ------------------------------
-st.markdown(
-    """
-    <img class="hero-image" src="./assets/1234.jpg" alt="Hero Image">
-    """,
-    unsafe_allow_html=True
-)
+st.image("assets\hero_image.png")
 
 # ------------------------------
 # Quick Stats (dummy placeholders)
@@ -232,14 +218,27 @@ st.markdown("---")
 st.header("📩 Contact Us")
 
 # Form fields
-name = st.text_input("Your Name")
-email = st.text_input("Your Email")
-message = st.text_area("Your Message")
+with st.form("contact_form"):
+    name = st.text_input("Your Name")
+    user_email = st.text_input("Your Email")
+    query = st.text_area("Your Message", height=150)
+    submitted = st.form_submit_button("📨 Create Email")
 
-if st.button("✉️ Create Email"):
-    st.success(f"Thanks {name}! Your message has been prepared for sending.")
-    st.info(f"Email: {email}\nMessage: {message}")
+    if submitted:
+        if name and user_email and query:
+            subject = urllib.parse.quote("AutoValuer Inquiry / Suggestion")
+            body = urllib.parse.quote(f"Name: {name}\nEmail: {user_email}\n\nMessage:\n{query}")
+            mailto_link = f"mailto:dakshrana0@gmail.com?subject={subject}&body={body}"
 
+            st.markdown(f"""<a href="{mailto_link}" style="color: inherit; text-decoration: none;">
+        👉 Click here to open your email client and send
+    </a>
+    """,
+    unsafe_allow_html=True
+)
+            st.info("✅ Your message has been pre-filled. Just hit send from your mail app.")
+        else:
+            st.warning("⚠️ Please complete all fields before submitting.")
 # ------------------------------
 # Footer Section
 # ------------------------------
@@ -247,8 +246,8 @@ st.markdown(
     """
     <div class="footer">
         © 2025 AUTO VALUER. All rights reserved. | 
-        <a href="https://www.linkedin.com" target="_blank">LinkedIn</a> | 
-        <a href="https://github.com" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/daksh-rana-/" target="_blank">LinkedIn</a> | 
+        <a href="https://github.com/dakshhrana0-hub" target="_blank">GitHub</a>
     </div>
     """,
     unsafe_allow_html=True

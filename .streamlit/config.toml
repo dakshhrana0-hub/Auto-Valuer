@@ -1,6 +1,7 @@
 [theme]
-primaryColor="#9B30FF"         # Purple (Dark Orchid)
-backgroundColor="#000000"      # Black
-secondaryBackgroundColor="#1A1A1A"  # Dark Grey/Black
-textColor="#FFFFFF"            # White text
-font="sans serif"
+base = "dark"
+primaryColor = "#aba6a6ff"         # Soft vintage grey for buttons and accents
+backgroundColor = "#000000"      # Deep black background
+secondaryBackgroundColor = "#1A1A1A"  # Slightly lighter black for cards/forms
+textColor = "#d3d0d0ff"            # Soft white text
+font = "serif"                   # Vintage-style font (Georgia, Times)
