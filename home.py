@@ -164,9 +164,9 @@ st.image("assets\hero_image.png")
 # ------------------------------
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.metric("Cars Scraped", "4,280+")
+    st.metric("Cars Scraped", "3000+")
 with col2:
-    st.metric("Brands Covered", "35+")
+    st.metric("Brands Covered", "13+")
 with col3:
     st.metric("Avg Price Range", "₹1.5L – ₹12L")
 
@@ -202,7 +202,7 @@ with col2:
 # ------------------------------
 st.markdown("---")
 st.header("❓ Frequently Asked Questions")
-with st.expander("How does Car Compare AI predict prices?"):
+with st.expander("How does Auto Valuer predict prices?"):
     st.write("We use a **Multiple Linear Regression model** trained on scraped data to estimate fair car values.")
 with st.expander("Which platforms do you scrape data from?"):
     st.write("Currently from **OLX** and **CarsDekho24**, with plans to expand to Cars24 and Spinny.")

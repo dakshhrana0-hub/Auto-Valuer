@@ -52,4 +52,4 @@ df = pd.DataFrame(car_data)
 print(df.head())
 
 # Optional: Save to CSV
-df.to_csv('olx_car_listings_expanded.csv', index=False)
+df.to_csv('../Data/olx_car_listings_expanded.csv', index=False)
