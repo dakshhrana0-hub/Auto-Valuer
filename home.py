@@ -157,7 +157,7 @@ st.markdown(
 # ------------------------------
 # Hero Image Section (Below Title)
 # ------------------------------
-st.image("assets\hero_image.png")
+st.image(".//assets/hero_image.png")
 
 # ------------------------------
 # Quick Stats (dummy placeholders)
