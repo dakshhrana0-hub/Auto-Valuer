@@ -6,7 +6,7 @@ import urllib
 # ------------------------------
 st.set_page_config(
     page_title="AUTO VALUER",
-    page_icon="🏎️",
+    page_icon="🛞",
     layout="wide"
 )
 
@@ -162,13 +162,16 @@ st.image("assets\hero_image.png")
 # ------------------------------
 # Quick Stats (dummy placeholders)
 # ------------------------------
+data = pd.read_csv("./Data/olx_cars_data.csv")
+min_price = min(data['Price'])/100000
+max_price = max(data['Price'])/100000
 col1, col2, col3 = st.columns(3)
 with col1:
     st.metric("Cars Scraped", "3000+")
 with col2:
-    st.metric("Brands Covered", "13+")
+    st.metric("Brands Covered", "15+")
 with col3:
-    st.metric("Avg Price Range", "₹1.5L – ₹12L")
+    st.metric("Avg Price Range", f"₹{round(min_price,2)}L – ₹{round(max_price,2)}L")
 
 # ------------------------------
 # Navigation Cards
@@ -202,15 +205,20 @@ with col2:
 # ------------------------------
 st.markdown("---")
 st.header("❓ Frequently Asked Questions")
-with st.expander("How does Auto Valuer predict prices?"):
-    st.write("We use a **Multiple Linear Regression model** trained on scraped data to estimate fair car values.")
+
+with st.expander("What can Auto Valuer do for me?"):
+    st.write("""
+    Auto Valuer lets you **compare multiple cars** and get **GenAI-powered suggestions** based on brand history, depreciation trends, and pricing context — all derived from public OLX listings.
+    """)
+
 with st.expander("Which platforms do you scrape data from?"):
-    st.write("Currently from **OLX** and **CarsDekho24**, with plans to expand to Cars24 and Spinny.")
+    st.write("We currently scrape data from **OLX**, ensuring consistent and reliable analysis.")
+
 with st.expander("Can I trust the AI recommendations?"):
-    st.write("Our GenAI assistant combines regression output, brand history, and depreciation trends to give **context-aware suggestions** — but final decisions should always involve inspection and negotiation.")
+    st.write("Our GenAI assistant blends scraped data, brand history, and depreciation trends to offer **context-aware suggestions** — but final decisions should always involve inspection and negotiation.")
+
 with st.expander("Do you store my personal data?"):
     st.write("No personal user data is stored. We only process public car listing data for analysis.")
-
 # ------------------------------
 # Contact Us Form Section
 # ------------------------------
