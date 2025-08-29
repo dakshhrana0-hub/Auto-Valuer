@@ -1,14 +1,13 @@
 import streamlit as st
 import pandas as pd
 import os
-from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 
 # ------------------------------
 # Setup
 # ------------------------------
-load_dotenv()
-API_KEY = os.getenv(".GROQ_API_KEY")
+
+API_KEY = st.secrets["GROQ_API_KEY"]
 
 st.set_page_config(page_title="AUTO VALUER", layout="wide")
 st.markdown("### ⚖️ Compare Two Cars")
