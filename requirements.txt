@@ -4,6 +4,6 @@ seaborn
 matplotlib
 requests
 scikit-learn
-dotenv
+python-dotenv
 langchain
 langchain-groq

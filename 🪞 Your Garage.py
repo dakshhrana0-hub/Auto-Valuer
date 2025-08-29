@@ -154,6 +154,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+import streamlit as st
+
+with st.sidebar:
+    st.markdown("### 🛠️ AUTO VALUER")
+    st.markdown("**Your trusted car pricing companion.**")
+    st.markdown("Compare, evaluate, and explore listings with clarity.\
+    Built with transparency, tuned for real-world impact.")
 # ------------------------------
 # Hero Image Section (Below Title)
 # ------------------------------
@@ -187,7 +194,7 @@ with col1:
     st.markdown("#### 🧠 Smart Assistant & Comparison")
     st.write("Ask natural language questions and compare two cars side-by-side with intelligent insights.")
     if st.button("Launch Assistant ➡️"):
-        st.switch_page("pages/2_AssistantComparison.py")
+        st.switch_page("pages/comparison.py")
 
 with col2:
     st.markdown("#### 🚗 Car Listings")
