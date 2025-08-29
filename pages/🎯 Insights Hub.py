@@ -104,7 +104,7 @@ def apply_dark_style(ax, fig, title="", xlabel="", ylabel=""):
 # ------------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv(".//data/olx_cars_data.csv")
+    df = pd.read_csv(".//Data/olx_cars_data.csv")
     df.columns = df.columns.str.strip().str.replace(" ", "_")
     df["Price"] = pd.to_numeric(df["Price"], errors="coerce")
     df["Year"] = pd.to_numeric(df["Year"], errors="coerce")
