@@ -153,9 +153,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-import streamlit as st
-
 with st.sidebar:
     st.markdown("### 🛠️ AUTO VALUER")
     st.markdown("**Your trusted car pricing companion.**")
@@ -189,18 +186,18 @@ with col1:
     st.markdown("#### 📊 Dashboard")
     st.write("View trend charts, brand insights, and overall market patterns from the scraped OLX dataset.")
     if st.button("Go to Dashboard ➡️"):
-        st.switch_page("pages/dashboard.py")
+        st.switch_page("pages/🎯 Insights Hub.py")
 
     st.markdown("#### 🧠 Smart Assistant & Comparison")
     st.write("Ask natural language questions and compare two cars side-by-side with intelligent insights.")
     if st.button("Launch Assistant ➡️"):
-        st.switch_page("pages/comparison.py")
+        st.switch_page("pages/⚖️ Compare Cars.py")
 
 with col2:
     st.markdown("#### 🚗 Car Listings")
     st.write("Search and explore individual car listings with filters, details, and direct visit links.")
     if st.button("Explore Listings ➡️"):
-        st.switch_page("pages/Cars_Listings.py")
+        st.switch_page("pages/🚘Explore Cars.py")
 
 # ------------------------------
 # FAQ Section

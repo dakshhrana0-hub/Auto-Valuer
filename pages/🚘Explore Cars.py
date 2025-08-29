@@ -7,7 +7,11 @@ df = pd.read_csv('./Data/olx_cars_data.csv')
 # Page config
 st.set_page_config(page_title="Car Listings Explorer", layout="wide")
 st.title("🚗 OLX Car Listings Explorer")
-
+with st.sidebar:
+    st.markdown("### 🛠️ AUTO VALUER")
+    st.markdown("**Your trusted car pricing companion.**")
+    st.markdown("Compare, evaluate, and explore listings with clarity.\
+    Built with transparency, tuned for real-world impact.")
 # --- Filters ---
 col1, col2 = st.columns(2)
 

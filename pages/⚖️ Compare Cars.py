@@ -13,7 +13,11 @@ API_KEY = os.getenv(".GROQ_API_KEY")
 st.set_page_config(page_title="AUTO VALUER", layout="wide")
 st.markdown("### ⚖️ Compare Two Cars")
 st.write("Select two cars to compare their specifications and get a smart recommendation.")
-
+with st.sidebar:
+    st.markdown("### 🛠️ AUTO VALUER")
+    st.markdown("**Your trusted car pricing companion.**")
+    st.markdown("Compare, evaluate, and explore listings with clarity.\
+    Built with transparency, tuned for real-world impact.")
 # ------------------------------
 # Load and format data
 # ------------------------------
