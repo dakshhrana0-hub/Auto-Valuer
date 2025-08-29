@@ -179,26 +179,21 @@ with col3:
 st.markdown("### 🔍 Explore the Modules")
 col1, col2 = st.columns(2)
 with col1:
-    st.markdown("#### 📊 Car Inventory Dashboard")
-    st.write("Browse all scraped cars with filters, search, and trend charts.")
+    st.markdown("#### 📊 Dashboard")
+    st.write("View trend charts, brand insights, and overall market patterns from the scraped OLX dataset.")
     if st.button("Go to Dashboard ➡️"):
-        st.switch_page("pages/1_Dashboard.py")
+        st.switch_page("pages/dashboard.py")
 
-    st.markdown("#### 🤖 GenAI Decision Assistant")
-    st.write("Ask natural language questions and get smart recommendations.")
-    if st.button("Chat with Assistant ➡️"):
-        st.switch_page("pages/2_Assistant.py")
+    st.markdown("#### 🧠 Smart Assistant & Comparison")
+    st.write("Ask natural language questions and compare two cars side-by-side with intelligent insights.")
+    if st.button("Launch Assistant ➡️"):
+        st.switch_page("pages/2_AssistantComparison.py")
 
 with col2:
-    st.markdown("#### 💰 Price Prediction")
-    st.write("Estimate a car’s fair value using our regression model.")
-    if st.button("Predict Price ➡️"):
-        st.switch_page("pages/3_PricePrediction.py")
-
-    st.markdown("#### ⚖️ Car Comparison")
-    st.write("Compare two cars side-by-side with key insights.")
-    if st.button("Compare Cars ➡️"):
-        st.switch_page("pages/4_Comparison.py")
+    st.markdown("#### 🚗 Car Listings")
+    st.write("Search and explore individual car listings with filters, details, and direct visit links.")
+    if st.button("Explore Listings ➡️"):
+        st.switch_page("pages/Cars_Listings.py")
 
 # ------------------------------
 # FAQ Section

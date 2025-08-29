@@ -11,11 +11,14 @@ st.title("🚗 OLX Car Listings Explorer")
 # --- Filters ---
 col1, col2 = st.columns(2)
 
-def brand_names(brand):
-    return brand.capitalize()
-Brands = df['Brand'].apply(brand_names)
+# Capitalize brand names for display only
+unique_brands = sorted(df['Brand'].dropna().unique())
+display_brands = [b.capitalize() for b in unique_brands]
+
 with col1:
-    selected_brand = st.selectbox("Choose Brand", options=Brands.unique())
+    selected_brand_display = st.selectbox("Choose Brand", options=display_brands)
+    selected_brand = selected_brand_display.lower()  # for filtering
+
 with col2:
     selected_year = st.slider(
         "Select Year Range",
@@ -24,17 +27,25 @@ with col2:
         value=(int(df["Year"].min()), int(df["Year"].max()))
     )
 
+# Optional model name search
+search_term = st.text_input("🔍 Search by Model Name", value="", help="Type part of the car title (e.g. 'Swift', 'Creta')")
+
 submit = st.button("🚀 Show Listings")
 
 # --- Display Section ---
 if submit:
+    # Title filter: optional
+    title_filter = df["Title"].str.lower().str.contains(search_term.lower()) if search_term.strip() else pd.Series([True] * len(df))
+
+    # Apply all filters
     filtered_df = df[
-        (df["Brand"] == selected_brand.lower()) &
+        (df["Brand"].str.lower() == selected_brand) &
         (df["Year"] >= selected_year[0]) &
-        (df["Year"] <= selected_year[1])
+        (df["Year"] <= selected_year[1]) &
+        title_filter
     ]
 
-    st.markdown(f"### 🔍 Showing {len(filtered_df)} listings for **{selected_brand}** ({selected_year[0]}–{selected_year[1]})")
+    st.markdown(f"### 🔍 Showing {len(filtered_df)} listings for **{selected_brand_display}** ({selected_year[0]}–{selected_year[1]})")
 
     for _, row in filtered_df.iterrows():
         has_image = pd.notna(row["Image"]) and str(row["Image"]).strip() != ""
