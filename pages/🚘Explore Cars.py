@@ -28,7 +28,7 @@ with col2:
     )
 
 # Optional model name search
-search_term = st.text_input("🔍 Search by Model Name", value="", help="Type part of the car title (e.g. 'Swift', 'Creta')")
+search_term = st.text_input("🔍 Search by Model Name",placeholder="Enter model name ...", help="Type part of the car title (e.g. 'Swift', 'Creta')")
 
 submit = st.button("🚀 Show Listings")
 

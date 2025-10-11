@@ -249,6 +249,36 @@ with st.form("contact_form"):
             st.info("✅ Your message has been pre-filled. Just hit send from your mail app.")
         else:
             st.warning("⚠️ Please complete all fields before submitting.")
+
+st.markdown("""
+    <style>
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #262730;
+            color: #FAFAFA;
+            padding: 12px 20px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 9999;
+        }
+        .floating-button:hover {
+            background-color: #444;
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+    </style>
+
+    <a href="/Your_Assistant" target="_self">
+        <button class="floating-button">💬 Chat Now</button>
+    </a>
+""", unsafe_allow_html=True)
+
 # ------------------------------
 # Footer Section
 # ------------------------------
