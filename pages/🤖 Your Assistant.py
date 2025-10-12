@@ -2,7 +2,6 @@ import streamlit as st
 import os
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-from datetime import datetime
 
 # ------------------------------
 # Setup
@@ -39,7 +38,6 @@ if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant",
         "content": "👋 Hi there! I'm your assistant powered by Groq. Ask me anything!",
-        "timestamp": datetime.now().strftime("%I:%M %p")
     }]
 
 # ------------------------------
@@ -47,11 +45,7 @@ if "messages" not in st.session_state:
 # ------------------------------
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
-        timestamp = msg.get("timestamp", "")
-        if timestamp:
-            st.markdown(f"{msg['content']}\n\n*_{timestamp}_*")
-        else:
-            st.markdown(msg["content"])
+        st.markdown(msg["content"])
 
 # ------------------------------
 # Chat Input
@@ -59,12 +53,10 @@ for msg in st.session_state.messages:
 user_input = st.chat_input("Type your message...")
 
 if user_input:
-    timestamp = datetime.now().strftime("%I:%M %p")
-    st.chat_message("user").markdown(f"{user_input}\n\n*_{timestamp}_*")
+    st.chat_message("user").markdown(user_input)
     st.session_state.messages.append({
         "role": "user",
-        "content": user_input,
-        "timestamp": timestamp
+        "content": user_input
     })
 
     # Build full context for Groq
@@ -80,10 +72,8 @@ if user_input:
         bot_reply = "⚠️ Sorry, something went wrong while connecting to Groq."
 
     # Show bot reply
-    timestamp = datetime.now().strftime("%I:%M %p")
-    st.chat_message("assistant").markdown(f"{bot_reply}\n\n*_{timestamp}_*")
+    st.chat_message("assistant").markdown(bot_reply)
     st.session_state.messages.append({
         "role": "assistant",
-        "content": bot_reply,
-        "timestamp": timestamp
+        "content": bot_reply
     })
