@@ -37,7 +37,7 @@ llm = ChatGroq(
 if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant",
-        "content": "👋 Hi there! I'm your assistant powered by Groq. Ask me anything!",
+        "content": "👋 Hi there! I'm your assistant powered by Groq. Ask me anything!"
     }]
 
 # ------------------------------
